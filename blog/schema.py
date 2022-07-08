@@ -50,3 +50,6 @@ class Query(graphene.ObjectType):
 
     def resolve_posts_by_tag(root, info, tag):
         return models.Post.objects.prefetch_related("tags").select_related("author").filter(tags__name__iexact=tag)
+
+
+schema = graphene.Schema(query=Query)
